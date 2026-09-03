@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { Star } from "lucide-react";
 import Link from "next/link";
+import { useCartStore } from "../store/cartStore";
 
 export default function ProductCard({ product, priority = false }) {
+    const addToCart = useCartStore((state) => state.addToCart)
     if (!product) return null;
     const { id, title, price, image, rating } = product;
 
@@ -49,7 +51,9 @@ export default function ProductCard({ product, priority = false }) {
                         );
                     })}
                 </div>
-                <button className="mt-1 rounded-md bg-blue-800 px-4 py-1.5 text-base sm:text-2xl font-medium text-white transition-colors hover:bg-blue-900">
+                <button 
+                onClick={() => addToCart(product)}
+                className="mt-1 rounded-md bg-blue-800 px-4 py-1.5 text-base sm:text-2xl font-medium text-white transition-colors hover:bg-blue-900">
                     Add to Cart
                 </button>
             </div>

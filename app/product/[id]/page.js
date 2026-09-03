@@ -7,12 +7,14 @@ import { Star, Minus, Plus, ArrowLeft } from "lucide-react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { products } from "../../data/products";
+import { useCartStore } from "@/app/store/cartStore";
 
 export default function ProductDetailPage() {
   const params = useParams();
   const router = useRouter();
   const [quantity, setQuantity] = useState(1);
   const [search, setSearch] = useState("");
+  const addToCart = useCartStore((state) => state.addToCart);
 
   const product = products.find((p) => String(p.id) === params.id);
 
@@ -114,7 +116,9 @@ export default function ProductDetailPage() {
                 </button>
               </div>
             </div>
-            <button className="mt-4 w-full rounded-md bg-blue-800 px-4 py-3 text-base font-medium text-white transition-colors hover:bg-blue-900 sm:w-auto">
+            <button
+              onClick={() => addToCart(product)}
+              className="mt-4 w-full rounded-md bg-blue-800 px-4 py-3 text-base font-medium text-white transition-colors hover:bg-blue-900 sm:w-auto">
               Add to Cart
             </button>
           </div>
