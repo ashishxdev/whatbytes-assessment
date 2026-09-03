@@ -2,7 +2,7 @@
 
 import { Search, ShoppingCart, User } from "lucide-react";
 
-export default function Header() {
+export default function Header({ search, onSearch }) {
     return (
         <header className="w-full bg-blue-700 px-6 py-6">
             <div className="mx-auto flex max-w-7xl items-center justify-between gap-6">
@@ -15,6 +15,8 @@ export default function Header() {
                         <Search className="h-5 w-5 text-blue-200" />
                         <input
                             type="text"
+                            value={search}
+                            onChange={(e) => onSearch(e.target.value)}
                             placeholder="Search for products..."
                             className="w-full bg-transparent text-sm text-white outline-none"
                         />

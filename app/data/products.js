@@ -6,7 +6,7 @@ export const products = [
         description:
             "Comfortable and lightweight running shoes designed for everyday workouts and running.",
         category: "Clothing",
-        image: "/products/running-shoes.png",
+        image: "/products/running-shoes.jpg",
         rating: 4.5,
     },
     {
@@ -56,7 +56,7 @@ export const products = [
         description:
             "Compact digital camera designed to capture high-quality photos and videos.",
         category: "Electronics",
-        image: "/products/digital-camera.jpg",
+        image: "/products/digital-camera.jpeg",
         rating: 4.7,
     },
     {
@@ -76,7 +76,7 @@ export const products = [
         description:
             "Powerful smartphone with a high-resolution display, advanced camera, and fast processor.",
         category: "Electronics",
-        image: "/products/smartphone.png",
+        image: "/products/smartphone.jpg",
         rating: 4.8,
         featured: true,
     },

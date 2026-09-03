@@ -9,7 +9,7 @@ export default function FeaturedProductCard({ product }) {
 
     return (
         <div className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-sm transition-shadow hover:shadow-md sm:flex-row">
-            <div className="relative h-128 w-full sm:h-128 sm:w-1/2">
+            <div className="relative h-128 w-full">
                 <Image
                     src={image}
                     alt={title}
@@ -19,7 +19,7 @@ export default function FeaturedProductCard({ product }) {
                     loading="eager"
                 />
             </div>
-            <div className="flex w-full flex-col gap-2 p-6 sm:w-3/5">
+            <div className="flex w-full flex-col gap-2 p-6 sm:w-3/5 pl-0">
                 <h3 className="text-4xl font-bold text-gray-900">{title}</h3>
                 <p className="text-2xl font-bold text-gray-900">${price}</p>
                 <div className="flex items-center gap-0.5">

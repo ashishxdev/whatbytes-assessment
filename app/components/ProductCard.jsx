@@ -10,19 +10,19 @@ export default function ProductCard({ product, priority = false }) {
 
     return (
         <div className="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm transition-shadow hover:shadow-md">
-            <div className="relative h-40 w-full">
+            <div className="relative h-84 w-full">
                 <Image
                     src={image}
                     alt={title}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-contain"
+                    className="object-cover"
                     priority={priority}
                     loading="eager"
                 />
             </div>
             <div className="flex flex-col gap-1.5 px-4 pb-4 pt-3">
-                <h3 className="text-3xl font-bold text-gray-900">{title}</h3>
+                <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
                 <p className="text-xl font-bold text-gray-900">${price}</p>
                 <div className="flex items-center gap-0.5">
                     {Array.from({ length: 5 }).map((_, i) => {
@@ -44,7 +44,7 @@ export default function ProductCard({ product, priority = false }) {
                         );
                     })}
                 </div>
-                <button className="mt-1 rounded-md bg-blue-800 px-4 py-1.5 text-3xl font-medium text-white transition-colors hover:bg-blue-900">
+                <button className="mt-1 rounded-md bg-blue-800 px-4 py-1.5 text-2xl font-medium text-white transition-colors hover:bg-blue-900">
                     Add to Cart
                 </button>
             </div>
