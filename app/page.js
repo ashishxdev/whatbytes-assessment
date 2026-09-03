@@ -17,9 +17,9 @@ export default function page() {
     <>
       <div className="flex min-h-screen flex-col bg-gray-100">
         <Header search={search} onSearch={setSearch} />
-        <div className="flex flex-1 items-start gap-6 p-6">
+        <div className="flex flex-col lg:flex-row flex-1 items-start gap-6 p-6">
           <Sidebar />
-          <main className="flex-1">
+          <main className="flex-1 w-full">
             <h1 className="text-4xl font-extrabold text-black mb-6">Product Listing</h1>
             <ProductGrid products={filteredProducts} />
           </main>
