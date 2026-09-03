@@ -6,7 +6,7 @@ export const products = [
         description:
             "Comfortable and lightweight running shoes designed for everyday workouts and running.",
         category: "Clothing",
-        image: "/products/running-shoes.jpg",
+        image: "/products/running-shoes.png",
         rating: 4.5,
     },
     {
@@ -16,7 +16,7 @@ export const products = [
         description:
             "Wireless headphones with clear sound, comfortable ear cushions, and long battery life.",
         category: "Electronics",
-        image: "/products/wireless-headphones.jpg",
+        image: "/products/wireless-headphones.png",
         rating: 4.3,
     },
     {
@@ -46,7 +46,7 @@ export const products = [
         description:
             "Stylish sunglasses with UV protection and a lightweight frame for everyday use.",
         category: "Clothing",
-        image: "/products/sunglasses.jpg",
+        image: "/products/sunglasses.png",
         rating: 4.2,
     },
     {
