@@ -76,17 +76,8 @@ export const products = [
         description:
             "Powerful smartphone with a high-resolution display, advanced camera, and fast processor.",
         category: "Electronics",
-        image: "/products/smartphone.jpg",
+        image: "/products/smartphone.png",
         rating: 4.8,
-    },
-    {
-        id: 9,
-        title: "Coffee Maker",
-        price: 89,
-        description:
-            "Easy-to-use coffee maker for preparing fresh and delicious coffee at home.",
-        category: "Home",
-        image: "/products/coffee-maker.jpg",
-        rating: 4.5,
+        featured: true,
     },
 ];
