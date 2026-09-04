@@ -16,7 +16,7 @@ export default function Header({ search, onSearch }) {
                     </Link>
                 </div>
 
-                <div className="order-3 w-full sm:order-none sm:flex-1 sm:max-w-xl">
+                <div className="order-3 w-full sm:order-0 sm:flex-1 sm:max-w-xl">
                     <div className="flex items-center gap-2 rounded-md border border-blue-400 bg-blue-800 px-4 py-2">
                         <Search className="h-5 w-5 text-blue-200 shrink-0" />
                         <input
