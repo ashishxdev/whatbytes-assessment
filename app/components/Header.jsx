@@ -11,7 +11,9 @@ export default function Header({ search, onSearch }) {
         <header className="w-full bg-blue-700 px-6 py-6">
             <div className="mx-auto flex flex-wrap max-w-7xl items-center justify-between gap-6">
                 <div className="shrink-0">
-                    <span className="text-2xl sm:text-4xl font-bold text-white">Logo</span>
+                    <Link href="/">
+                        <span className="text-2xl sm:text-4xl font-bold text-white">Logo</span>
+                    </Link>
                 </div>
 
                 <div className="order-3 w-full sm:order-none sm:flex-1 sm:max-w-xl">

@@ -45,7 +45,7 @@ export const products = [
         price: 149,
         description:
             "Stylish sunglasses with UV protection and a lightweight frame for everyday use.",
-        category: "Clothing",
+        category: "Fashion",
         image: "/products/sunglasses.png",
         rating: 4.2,
     },
