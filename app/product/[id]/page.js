@@ -117,7 +117,7 @@ export default function ProductDetailPage() {
               </div>
             </div>
             <button
-              onClick={() => addToCart(product)}
+              onClick={() => addToCart(product, quantity)}
               className="mt-4 w-full rounded-md bg-blue-800 px-4 py-3 text-base font-medium text-white transition-colors hover:bg-blue-900 sm:w-auto">
               Add to Cart
             </button>

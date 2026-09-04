@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Link from "next/link";
 import Footer from "../components/Footer";
 import Image from "next/image";
+import { Minus, Plus, X } from "lucide-react";
 
 export default function CartPage() {
   const [search, setSearch] = useState("");
@@ -42,33 +43,35 @@ export default function CartPage() {
   return (
     <div className="flex min-h-screen flex-col bg-gray-100">
       <Header search={search} onSearch={setSearch} />
-      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 p-4 sm:p-6 lg:flex-row">
-        <div className="flex flex-1 flex-col gap-4">
+      <main className="items-start mx-auto flex w-full max-w-6xl flex-1 flex-col gap-4 sm:gap-6 p-3 sm:p-6 lg:flex-row">
+        <div className="flex flex-1 w-full flex-col gap-4">
           {cart.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col gap-4 rounded-xl bg-white p-4 shadow-sm sm:flex-row sm:items-center"
+              className="w-full flex flex-col gap-4 rounded-xl bg-white p-4 shadow-sm sm:flex-row sm:items-center"
             >
-              <div className="relative h-24 w-24 shrink-0 sm:h-28 sm:w-28">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="112px"
-                  className="object-contain"
-                />
+              <div className="flex w-full items-center gap-4 sm:contents">
+                <div className="relative h-20 w-20 shrink-0 sm:h-28 sm:w-28">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="112px"
+                    className="object-contain"
+                  />
+                </div>
+
+                <div className="flex flex-1 flex-col gap-1">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900">
+                    {item.title}
+                  </h3>
+                  <p className="text-base font-bold text-gray-900">
+                    ${item.price}
+                  </p>
+                </div>
               </div>
 
-              <div className="flex flex-1 flex-col gap-1">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {item.title}
-                </h3>
-                <p className="text-base font-bold text-gray-900">
-                  ${item.price}
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between gap-4 sm:justify-end">
+              <div className="flex items-center justify-between gap-2 sm:gap-4 sm:justify-end flex-wrap">
                 <div className="flex items-center rounded-md border border-gray-300">
                   <button
                     onClick={() => decreaseQuantity(item.id)}
@@ -99,7 +102,7 @@ export default function CartPage() {
           ))}
         </div>
 
-        <div className="w-full rounded-xl bg-white p-6 shadow-sm lg:w-80">
+        <div className="w-full rounded-xl bg-white p-4 sm:p-6 shadow-sm lg:w-80">
           <h2 className="mb-4 text-xl font-bold text-gray-900">
             Order Summary
           </h2>

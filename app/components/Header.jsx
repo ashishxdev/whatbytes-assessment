@@ -1,8 +1,12 @@
 "use client";
 
 import { Search, ShoppingCart, User } from "lucide-react";
+import Link from "next/link";
+import { useCartStore } from "../store/cartStore";
 
 export default function Header({ search, onSearch }) {
+    const cart = useCartStore((state) => state.cart);
+    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
     return (
         <header className="w-full bg-blue-700 px-6 py-6">
             <div className="mx-auto flex flex-wrap max-w-7xl items-center justify-between gap-6">
@@ -24,19 +28,21 @@ export default function Header({ search, onSearch }) {
                 </div>
 
                 <div className="flex shrink-0 items-center gap-4">
-                    <button className="relative flex items-center gap-2 rounded-md bg-blue-900 px-3 sm:px-4 py-2 text-white hover:bg-blue-950 transition-colors">
+                    <Link href="/cart" className="relative flex items-center gap-2 rounded-md bg-blue-900 px-3 sm:px-4 py-2 text-white hover:bg-blue-950 transition-colors">
                         <ShoppingCart className="h-5 w-5" />
                         <span className="hidden sm:inline text-sm font-medium">Cart</span>
-                        <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
-                            0
-                        </span>
-                    </button>
+                        {totalQuantity > 0 && (
+                            <span className="absolute -top-1 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+                                {totalQuantity}
+                            </span>
+                        )}
+                    </Link>
 
                     <button className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-900 text-white hover:bg-blue-950 transition-colors">
                         <User className="h-5 w-5" />
                     </button>
                 </div>
             </div>
-        </header>
+        </header >
     );
 }
