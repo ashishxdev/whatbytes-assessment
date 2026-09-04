@@ -3,11 +3,39 @@
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
-import { Star, Minus, Plus, ArrowLeft } from "lucide-react";
+import { Star, Minus, Plus, ArrowLeft, User } from "lucide-react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { products } from "../../data/products";
 import { useCartStore } from "@/app/store/cartStore";
+import { mockReviews } from "@/app/data/mockReviews";
+
+function StarRow({ rating, size = "h-4 w-4" }) {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 >= 0.5;
+
+  return (
+    <div className="flex items-center gap-0.5">
+      {Array.from({ length: 5 }).map((_, i) => {
+        const isFull = i < fullStars;
+        const isHalf = i === fullStars && hasHalfStar;
+        return (
+          <span key={i} className={`relative inline-block ${size}`}>
+            <Star className={`absolute inset-0 ${size}`} stroke="#d1d5db" fill="none" />
+            {(isFull || isHalf) && (
+              <span
+                className="absolute inset-0 overflow-hidden"
+                style={{ width: isHalf ? "50%" : "100%" }}
+              >
+                <Star className={size} stroke="#facc15" fill="#facc15" />
+              </span>
+            )}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -37,11 +65,10 @@ export default function ProductDetailPage() {
   }
 
   const { title, price, image, rating, description, category } = product;
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 >= 0.5;
-
   const increment = () => setQuantity((q) => q + 1);
   const decrement = () => setQuantity((q) => Math.max(1, q - 1));
+
+  const avgReviewRating = mockReviews.reduce((sum, r) => sum + r.rating, 0) / mockReviews.length;
 
   return (
     <div className="flex min-h-screen flex-col bg-gray-100">
@@ -72,25 +99,7 @@ export default function ProductDetailPage() {
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{title}</h1>
             <p className="text-2xl font-bold text-gray-900">${price}</p>
 
-            <div className="flex items-center gap-0.5">
-              {Array.from({ length: 5 }).map((_, i) => {
-                const isFull = i < fullStars;
-                const isHalf = i === fullStars && hasHalfStar;
-                return (
-                  <span key={i} className="relative inline-block h-5 w-5">
-                    <Star className="absolute inset-0 h-5 w-5" stroke="#d1d5db" fill="none" />
-                    {(isFull || isHalf) && (
-                      <span
-                        className="absolute inset-0 overflow-hidden"
-                        style={{ width: isHalf ? "50%" : "100%" }}
-                      >
-                        <Star className="h-5 w-5" stroke="#facc15" fill="#facc15" />
-                      </span>
-                    )}
-                  </span>
-                );
-              })}
-            </div>
+            <StarRow rating={rating} size="h-5 w-5" />
 
             <p className="text-base text-gray-600">{description}</p>
             <p className="text-sm text-gray-500">
@@ -121,6 +130,39 @@ export default function ProductDetailPage() {
               className="mt-4 w-full rounded-md bg-blue-800 px-4 py-3 text-base font-medium text-white transition-colors hover:bg-blue-900 sm:w-auto">
               Add to Cart
             </button>
+          </div>
+        </div>
+        <div className="mt-8 rounded-xl bg-white p-4 sm:p-8 shadow-sm">
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+              Customer Reviews
+            </h2>
+            <div className="flex items-center gap-2">
+              <StarRow rating={avgReviewRating} />
+              <span className="text-sm text-gray-600">
+                {avgReviewRating.toFixed(1)} ({mockReviews.length} reviews)
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-col divide-y divide-gray-200">
+            {mockReviews.map((review) => (
+              <div key={review.id} className="flex gap-4 py-4 first:pt-0 last:pb-0">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-200 text-gray-600">
+                  <User className="h-5 w-5" />
+                </div>
+                <div className="flex flex-1 flex-col gap-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold text-gray-900">
+                      {review.name}
+                    </span>
+                    <span className="text-xs text-gray-400">{review.date}</span>
+                  </div>
+                  <StarRow rating={review.rating} />
+                  <p className="text-sm text-gray-600">{review.comment}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </main>
